@@ -713,7 +713,7 @@ int OpenPositionPending(int TYPE,double OpenPrice,datetime expiration,double LOT
          if(stoploss-OpenPrice<=MarketInfo(Symbol(),MODE_STOPLEVEL)*Point) 
            {
             stoploss=NormalizeDouble(OpenPrice+MarketInfo(Symbol(),MODE_STOPLEVEL)*Point,Digits);
-            if(Journaling)Print("EA Journaling: Stop Loss changed from "+initSL+" to "+(OpenPrice-stoploss)/(K*Point)+" pips");
+            if(Journaling)Print("EA Journaling: Stop Loss changed from " + initSL + " to " + (stoploss-OpenPrice)/(K*Point) + " pips");
            }
         }
       if((TYPE==OP_SELLLIMIT || TYPE==OP_SELLSTOP) && TP!=0)
@@ -722,7 +722,7 @@ int OpenPositionPending(int TYPE,double OpenPrice,datetime expiration,double LOT
          if(OpenPrice-takeprofit<=MarketInfo(Symbol(),MODE_STOPLEVEL)*Point) 
            {
             takeprofit=NormalizeDouble(OpenPrice-MarketInfo(Symbol(),MODE_STOPLEVEL)*Point,Digits);
-            if(Journaling)Print("EA Journaling: Take Profit changed from "+initTP+" to "+(OrderOpenPrice()-stoploss)/(K*Point)+" pips");
+            if(Journaling)Print("EA Journaling: Take Profit changed from " + initTP + " to " + (OpenPrice-takeprofit)/(K*Point) + " pips");
            }
         }
       if(Journaling)Print("EA Journaling: Trying to place a pending order...");
